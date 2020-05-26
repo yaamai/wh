@@ -1,4 +1,3 @@
-#include <sys/poll.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -38,17 +37,6 @@ const size_t FILE_PATH_MAX = 256;
 
 bool has_stdin_data() {
 	return !isatty(STDIN_FILENO);
-        struct pollfd fds;
-        fds.fd = 0;
-        fds.events = POLLIN;
-
-        int ret = poll(&fds, 1, 0);
-        if(ret == 1)
-		return true;
-        else if(ret == 0)
-		return false;
-
-	return false;
 }
 
 // 0: not found, 1>: last number
